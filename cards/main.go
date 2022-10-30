@@ -12,12 +12,19 @@ func main() {
 
 	// fmt.Println(card)
 
-	cards := deck{newCard(), newCard()}
-	cards = append(cards, newCard())
+	cards := newDeck()
 
-	cards.print()
+	// cards := deck{newCard(), newCard()}
+	// cards = append(cards, newCard())
+
+	// cards.print()
+
+	hand, remainingCards := deal(cards, 5)
+
+	hand.print()
+	remainingCards.print()
 }
 
-func newCard() string {
-	return "Five of Diamonds"
-}
+// func newCard() string {
+// 	return "Five of Diamonds"
+// }

@@ -23,6 +23,12 @@ func main() {
 
 	// hand.print()
 	// remainingCards.print()
+
+	// cards := newDeck()
+	// cards.saveToFile("cards")
+
+	cards := newDeckFromFile("cards")
+	cards.print()
 }
 
 // func newCard() string {

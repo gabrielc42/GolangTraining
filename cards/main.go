@@ -25,9 +25,9 @@ func main() {
 	// remainingCards.print()
 
 	// cards := newDeck()
-	// cards.saveToFile("cards")
+	// cards.saveToFile("fiftyTwoCards")
 
-	cards := newDeckFromFile("cards")
+	cards := newDeckFromFile("fiftyTwoCards")
 	cards.print()
 }
 

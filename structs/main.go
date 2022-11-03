@@ -23,9 +23,12 @@ func main() {
 			zipCode: 00001,
 		},
 	}
-	johanPointer := &johan
-	johanPointer.updateName("jimmy")
+	// johanPointer := &johan //&variable is a reference, memory address pointer
+	johan.updateName("Jimmy")
 	johan.print()
+
+	// turn address into value with *address
+	// turn value into address with &value
 
 	// johan := person{firstName: "Johan", lastName: "Bolitkny"}
 	// fmt.Println(johan)
@@ -39,6 +42,6 @@ func (p person) print() {
 	fmt.Printf("%+v", p)
 }
 
-func (pointerToPerson *person) updateName(newFirstName string) {
-	(*pointerToPerson).firstName = newFirstName
+func (pointerToPerson *person) updateName(newFirstName string) { //*type description pointer to the type
+	(*pointerToPerson).firstName = newFirstName //*variable is value pointer, operator
 }

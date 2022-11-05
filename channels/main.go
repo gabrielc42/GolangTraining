@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -13,17 +14,39 @@ func main() {
 		"http://golang.org",
 	}
 
+	c := make(chan string)
+
 	for _, link := range links {
-		checkLink(link)
+		go checkLink(link, c)
+	}
+	// for i := range links {
+	// 	i++
+	// 	// fmt.Println(<-c) //blocking line, of code
+	// }
+
+	// for { // alt: for l := range c {
+	// 	go func() {
+	// 		time.Sleep(time.Second * 4)
+	// 		checkLink(<-c, c) //(l,c)
+	// 	}()
+	// } this prints links, waits 4 seconds, then repeats infinite loop without pause
+
+	for l := range c {
+		go func(link string) {
+			time.Sleep(5 * time.Second)
+			checkLink(link, c)
+		}(l)
 	}
 }
 
-func checkLink(link string) {
+func checkLink(link string, c chan string) {
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Println(link, "might be down!")
+		c <- link
 		return
 	}
 
 	fmt.Println(link, "is up!")
+	c <- link
 }
